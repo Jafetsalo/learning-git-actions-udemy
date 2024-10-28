@@ -9,44 +9,43 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      name: get code
-      uses: actions/checkout@v3
-      name: install nodejs
-      uses: action/setup-node@v3
-      with: 
-        node-version: 18
-      name: install dependencies
-      run: npm install
-      name: run tests
-      run: npm run lint
+      - name: get code
+        uses: actions/checkout@v3
+      - name: install nodejs
+        uses: actions/setup-node@v3
+        with: 
+          node-version: 18
+      - name: install dependencies
+        run: npm install
+      - name: run lint
+        run: npm run lint
   
   test:
     needs: [lint]
     runs-on: ubuntu-latest
     steps:
-      name: get code
-      uses: actions/checkout@v3
-      name: install nodejs
-      uses: action/setup-node@v3
-      with: 
-        node-version: 18
-      name: install dependencies
-      run: npm install
-      name: run tests
-      run: npm run lint
+      - name: get code
+        uses: actions/checkout@v3
+      - name: install nodejs
+        uses: actions/setup-node@v3
+        with: 
+          node-version: 18
+      - name: install dependencies
+        run: npm install
+      - name: run tests
+        run: npm test
   
   build:
-  needs: [test]
+    needs: [test]
     runs-on: ubuntu-latest
     steps:
-      name: get code
-      uses: actions/checkout@v3
-      name: install nodejs
-      uses: action/setup-node@v3
-      with: 
-        node-version: 18
-      name: install dependencies
-      run: npm install
-      name: run tests
-      run: npm run lint      
-    
+      - name: get code
+        uses: actions/checkout@v3
+      - name: install nodejs
+        uses: actions/setup-node@v3
+        with: 
+          node-version: 18
+      - name: install dependencies
+        run: npm install
+      - name: build project
+        run: npm run build
