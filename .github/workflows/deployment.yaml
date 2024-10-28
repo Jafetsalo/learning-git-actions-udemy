@@ -4,6 +4,7 @@ on:
   push:
     branches: [master]
     paths: ["*"]
+  workflow_dispatch:
 
 jobs:
   lint:
