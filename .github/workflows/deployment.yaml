@@ -1,0 +1,52 @@
+name: LintTestDeploy
+
+on:
+  push:
+    branches: [master]
+    paths: ["*"]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      name: get code
+      uses: actions/checkout@v3
+      name: install nodejs
+      uses: action/setup-node@v3
+      with: 
+        node-version: 18
+      name: install dependencies
+      run: npm install
+      name: run tests
+      run: npm run lint
+  
+  test:
+    needs: [lint]
+    runs-on: ubuntu-latest
+    steps:
+      name: get code
+      uses: actions/checkout@v3
+      name: install nodejs
+      uses: action/setup-node@v3
+      with: 
+        node-version: 18
+      name: install dependencies
+      run: npm install
+      name: run tests
+      run: npm run lint
+  
+  build:
+  needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      name: get code
+      uses: actions/checkout@v3
+      name: install nodejs
+      uses: action/setup-node@v3
+      with: 
+        node-version: 18
+      name: install dependencies
+      run: npm install
+      name: run tests
+      run: npm run lint      
+    
